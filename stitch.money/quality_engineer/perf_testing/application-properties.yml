@@ -1,0 +1,30 @@
+execution:
+  - executor: locust
+    concurrency:
+      local: 30
+      cloud: 50
+    locations:
+      us-west-1: 1
+      us-east-1: 2
+      us-west-2: 1
+      eu-west-1: 1
+    locations-weighted: true
+    throughput:
+      local: 100
+      cloud: 200
+    ramp-up: 30s
+    hold-for: 5m
+    scenario: todo-list-api
+
+scenarios:
+  todo-list-api:
+    default-address: http://localhost:8080
+    script: perf.py
+
+services:
+  - module: shellexec
+    post-process:
+      - echo "Deleting test data.."
+      - rm -rf 2022-*
+
+provisioning: local
