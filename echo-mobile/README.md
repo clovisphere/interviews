@@ -1,4 +1,4 @@
-# Echo Mobile
+# EchoMobile
 
 My answers to [EchoMobile](https://echomobile.io) interview's questions/assessment(s).
 
