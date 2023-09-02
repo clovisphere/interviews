@@ -1,4 +1,6 @@
-# Interview questions
+# Software Engineer Assessment
+
+Questions:
 
 - You are given a string S composed of characters A to Z, formulate a function that transforms a given string by changing each letter as follows: ‘a’ becomes ‘z’, ‘b’ becomes ‘y’, ‘c’ becomes ‘x’, etc. See [solution](./pset1.py)
 
