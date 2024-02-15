@@ -1,20 +1,19 @@
 # Gambit-Research 🔬
 # Reference: https://gambitresearch.com/quiz/
 
-import functools
 from itertools import product
 
-@functools.cache
-def unscramble(cipher_text: str, a: int, b: int, c: int) -> str:
-    codes = [int(token) for line in cipher_text.split('\n') for token in line.split(' ') if token]
+def unscramble(codes: list[int], a: int, b: int, c: int) -> str:
     unscrambled_chars = [chr((code - a + 256) % 256) \
         if i % 3 == 0 else chr((code - b + 256) % 256) \
         if i % 3 == 1 else chr((code - c + 256) % 256) for i, code in enumerate(codes)]
     return ''.join(unscrambled_chars)
 
 def solve(cipher_text: str, keywords: str) -> str | None:
+    codes = [int(token) for line in cipher_text.split('\n') \
+        for token in line.split(' ') if token]
     for a, b, c in product(range(257), repeat=3):
-        message = unscramble(cipher_text, a, b, c)
+        message = unscramble(codes, a, b, c)
         if all([
             message,
             message.isascii(),
